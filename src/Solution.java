@@ -1,29 +1,31 @@
-import java.util.Arrays;
-
 public class Solution {
-    public static int removeDuplicates(int[] nums) {
-        int index;
-        int[] expectedNums = new int[0];
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < nums.length - 1; j++) {
-                if (nums[i] == nums[j]) {
-                    index = nums[j];
-                    expectedNums = new int[nums.length - 1];
-                    for (int k = 0; k < nums.length; k++) {
-                        if (k != index) {
-                            int newIndex = k < index ? k : k - 1;
-                            expectedNums[newIndex] = nums[k];
-                        }
-                    }
-                }
+
+    public static int reverse(int x) {
+        String input = String.valueOf(x);
+        char[] charArray = input.toCharArray();
+        StringBuilder result = new StringBuilder();
+        if (input.startsWith("-")) {
+            String buff = input.substring(1);
+            char[] arr = buff.toCharArray();
+            for (int i = arr.length - 1; i >= 0; i--) {
+                result.append(arr[i]);
             }
+            if (-Long.parseLong(result.toString()) < Integer.MIN_VALUE) {
+                return 0;
+            } else
+                return -Integer.parseInt(result.toString());
+        } else {
+            for (int i = charArray.length - 1; i >= 0; i--) {
+                result.append(charArray[i]);
+            }
+            if (Long.parseLong(result.toString()) > Integer.MAX_VALUE) {
+                return 0;
+            } else
+                return Integer.parseInt(result.toString());
         }
-        System.out.println(Arrays.toString(expectedNums));
-        return expectedNums.length;
     }
 
     public static void main(String[] args) {
-        int[] n = new int[]{1, 1, 2};
-        System.out.println(removeDuplicates(n));
+        System.out.println(reverse(1239999999));
     }
 }
