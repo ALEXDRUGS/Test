@@ -1,31 +1,26 @@
+import java.util.Arrays;
+
 public class Solution {
 
-    public static int reverse(int x) {
-        String input = String.valueOf(x);
-        char[] charArray = input.toCharArray();
-        StringBuilder result = new StringBuilder();
-        if (input.startsWith("-")) {
-            String buff = input.substring(1);
-            char[] arr = buff.toCharArray();
-            for (int i = arr.length - 1; i >= 0; i--) {
-                result.append(arr[i]);
+    public static void sortColors(int[] nums) {
+        boolean sorted = false;
+        int temp;
+        while (!sorted) {
+            sorted = true;
+            for (int i = 0; i < nums.length - 1; i++) {
+                if (nums[i] > nums[i + 1]) {
+                    temp = nums[i];
+                    nums[i] = nums[i + 1];
+                    nums[i + 1] = temp;
+                    sorted = false;
+                }
             }
-            if (-Long.parseLong(result.toString()) < Integer.MIN_VALUE) {
-                return 0;
-            } else
-                return -Integer.parseInt(result.toString());
-        } else {
-            for (int i = charArray.length - 1; i >= 0; i--) {
-                result.append(charArray[i]);
-            }
-            if (Long.parseLong(result.toString()) > Integer.MAX_VALUE) {
-                return 0;
-            } else
-                return Integer.parseInt(result.toString());
         }
+        System.out.println(Arrays.toString(nums));
     }
 
     public static void main(String[] args) {
-        System.out.println(reverse(1239999999));
+        int[] c = {2, 0, 1};
+        sortColors(c);
     }
 }
